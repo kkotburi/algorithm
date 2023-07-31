@@ -1,5 +1,6 @@
 const solution = (intStrs, k, s, l) => {
-  return intStrs
-    .map((intStr) => parseInt(intStr.substr(s, l)))
-    .filter((intStr) => intStr > k);
+  const answer = intStrs
+    .map((intStr) => parseInt(intStr.slice(s, s + l)))
+    .filter((num) => num > k);
+  return answer;
 };
