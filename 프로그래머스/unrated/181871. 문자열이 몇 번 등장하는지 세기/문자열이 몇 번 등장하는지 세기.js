@@ -9,5 +9,6 @@ const solution = (myString, pat) => {
   }
 
   const answer = newString.length;
+
   return answer;
 };
