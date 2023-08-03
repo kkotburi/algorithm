@@ -8,18 +8,21 @@ const solution = (keyinput, board) => {
   const minY = -((board[1] - 1) / 2);
 
   for (let i = 0; i < keyinput.length; i++) {
-    if (keyinput[i] === "right" && x < maxX) {
-      x++;
-    }
-    if (keyinput[i] === "left" && x > minX) {
-      x--;
-    }
-    if (keyinput[i] === "up" && y < maxY) {
-      y++;
-    }
-    if (keyinput[i] === "down" && y > minY) {
-      y--;
+    switch (keyinput[i]) {
+      case "right":
+        x < maxX && x++;
+        break;
+      case "up":
+        y < maxY && y++;
+        break;
+      case "left":
+        x > minX && x--;
+        break;
+      case "down":
+        y > minY && y--;
+        break;
     }
   }
+
   return [x, y];
 };
