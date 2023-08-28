@@ -4,7 +4,7 @@ const solution = (participants, completions) => {
   const sortParticipants = participants.sort();
   const sortCompletions = completions.sort();
 
-  for (i = 0; i < sortParticipants[i] !== sortCompletions[i]; i++) {
+  for (i = 0; i < sortParticipants.length; i++) {
     if (sortParticipants[i] !== sortCompletions[i]) {
       return (answer = sortParticipants[i]);
     }
