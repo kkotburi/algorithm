@@ -4,11 +4,7 @@ const solution = (X, Y) => {
   let arrayY = Y.split("").sort();
   for (let i = arrayX.length - 1; i >= 0; i--) {
     if (arrayX[i] < arrayY[arrayY.length - 1]) {
-      for (
-        let j = arrayY.length - 1;
-        arrayX[i] < arrayY[arrayY.length - 1];
-        j--
-      ) {
+      for (let j = arrayY.length - 1; arrayX[i] < arrayY[j]; j--) {
         arrayY.pop();
         j++;
       }
