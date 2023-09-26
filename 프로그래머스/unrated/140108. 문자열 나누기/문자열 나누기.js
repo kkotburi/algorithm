@@ -3,10 +3,11 @@ const solution = (s) => {
   for (i = 0; i < s.length; i++) {
     if (i === answer.join("").length) {
       let classS = [s[i]];
-      for (j = i + 1; j < s.length; j++) {
+      for (j = i + 1; j <= s.length; j++) {
         if (
+          s[j] &&
           classS.length / 2 !==
-          classS.filter((letter) => letter === s[i]).length
+            classS.filter((letter) => letter === s[i]).length
         ) {
           classS.push(s[j]);
         } else {
@@ -16,5 +17,5 @@ const solution = (s) => {
       }
     }
   }
-  return answer.length + 1;
+  return answer.length;
 };
