@@ -27,16 +27,11 @@ const solution = (s, skip, index) => {
     "x",
     "y",
     "z",
-  ];
-  const alphabetSkip = alphabet.filter((letter) => !skip.includes(letter));
+  ].filter((letter) => !skip.includes(letter));
 
   for (i = 0; i < s.length; i++) {
-    const alphabetIndex = alphabetSkip.indexOf(s.charAt(i)) + index;
-    if (alphabetIndex < alphabetSkip.length) {
-      answer += alphabetSkip[alphabetIndex];
-    } else {
-      answer += alphabetSkip[alphabetIndex % alphabetSkip.length];
-    }
+    answer +=
+      alphabet[(alphabet.indexOf(s.charAt(i)) + index) % alphabet.length];
   }
 
   return answer;
