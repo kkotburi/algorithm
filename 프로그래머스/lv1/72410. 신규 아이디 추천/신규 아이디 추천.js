@@ -2,8 +2,7 @@ const solution = (new_id) => {
   if (/^[a-z0-9-_](?!.*[.]{2,})[a-z0-9-_.]{1,13}[a-z0-9]$/.test(new_id)) {
     return new_id;
   } else {
-    let answer = "";
-    answer = new_id
+    let answer = new_id
       .toLowerCase()
       .replace(/[^\w-_.]/g, "")
       .replace(/\.+/g, ".")
