@@ -1,13 +1,14 @@
 const solution = (progresses, speeds) => {
   let answer = [];
   let temp = [];
-  let days = progresses.map((progress, index) =>
-    Math.ceil((100 - progress) / speeds[index])
-  );
 
-  for (let i = 0; i < days.length; i++) {
-    temp.push(days[i]);
-    if (temp[0] < days[i + 1] || !days[i + 1]) {
+  for (let i = 0; i < progresses.length; i++) {
+    progresses[i] = Math.ceil((100 - progresses[i]) / speeds[i]);
+  }
+
+  for (let i = 0; i < progresses.length; i++) {
+    temp.push(progresses[i]);
+    if (temp[0] < progresses[i + 1] || !progresses[i + 1]) {
       answer.push(temp.length);
       temp = [];
     }
