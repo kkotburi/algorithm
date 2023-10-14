@@ -3,7 +3,7 @@ const solution = (n, k) => {
   let array = n
     .toString(k)
     .split("0")
-    .filter((one) => one && one !== "1");
+    .filter((one) => one > 1);
   let isDecimal = 0;
   for (let i = 0; i < array.length; i++) {
     for (let j = 2; j <= Math.sqrt(array[i]); j++) {
