@@ -1,2 +1,4 @@
-const solution = (numbers) =>
-  numbers.sort((a, b) => b - a)[0] * numbers.sort((a, b) => b - a)[1];
+const solution = (numbers) => {
+  numbers.sort((a, b) => b - a);
+  return numbers[0] * numbers[1];
+};
