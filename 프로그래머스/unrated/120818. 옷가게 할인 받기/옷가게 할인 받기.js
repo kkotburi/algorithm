@@ -1,11 +1,14 @@
+const discounts = [
+  [500000, 0.8],
+  [300000, 0.9],
+  [100000, 0.95],
+];
+
 const solution = (price) => {
-  let answer = price;
-  if (price >= 500000) {
-    answer = price * 0.8;
-  } else if (price >= 300000) {
-    answer = price * 0.9;
-  } else if (price >= 100000) {
-    answer = price * 0.95;
+  for (let i = 0; i < discounts.length; i++) {
+    if (price >= discounts[i][0]) {
+      return Math.floor(price * discounts[i][1]);
+    }
   }
-  return Math.floor(answer);
+  return price;
 };
