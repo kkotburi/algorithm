@@ -4,7 +4,7 @@ const solution = (num_list) => {
     if (num_list.length > 10) {
       answer += num_list[i];
     } else {
-      answer = answer * num_list[i];
+      answer *= num_list[i];
     }
   }
   return answer;
