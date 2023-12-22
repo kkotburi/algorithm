@@ -1,1 +1,2 @@
-const solution = (my_string) => my_string.split(/\s+/).filter((a) => a !== "");
+const solution = (my_string) =>
+  my_string.split(" ").filter((blank) => blank !== "");
