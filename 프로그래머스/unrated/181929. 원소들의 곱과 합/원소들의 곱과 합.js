@@ -1,9 +1,9 @@
 const solution = (num_list) => {
+  let mul = 1;
   let sum = 0;
-  let times = 1;
   for (let i = 0; i < num_list.length; i++) {
+    mul *= num_list[i];
     sum += num_list[i];
-    times *= num_list[i];
   }
-  return times < sum ** 2 ? 1 : 0;
+  return mul < sum ** 2 ? 1 : 0;
 };
