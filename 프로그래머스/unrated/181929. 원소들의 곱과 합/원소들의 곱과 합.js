@@ -1,5 +1,4 @@
 const solution = (num_list) => {
-  let answer = 0;
   let sum = 0;
   let times = 1;
   for (let i = 0; i < num_list.length; i++) {
