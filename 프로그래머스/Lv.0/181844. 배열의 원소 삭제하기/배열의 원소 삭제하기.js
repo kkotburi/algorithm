@@ -1,9 +1,2 @@
-const solution = (arr, delete_list) => {
-  let answer = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (!delete_list.includes(arr[i])) {
-      answer.push(arr[i]);
-    }
-  }
-  return answer;
-};
+const solution = (arr, delete_list) =>
+  arr.filter((element) => !delete_list.includes(element));
