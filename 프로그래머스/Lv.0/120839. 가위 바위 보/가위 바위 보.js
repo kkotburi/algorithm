@@ -1,17 +1,9 @@
 const solution = (rsp) => {
-  let answer = "";
-  for (let i = 0; i < rsp.length; i++) {
-    switch (rsp[i]) {
-      case "0":
-        answer += "5";
-        break;
-      case "2":
-        answer += "0";
-        break;
-      case "5":
-        answer += "2";
-        break;
-    }
-  }
+  let arr = {
+    2: 0,
+    0: 5,
+    5: 2,
+  };
+  let answer = [...rsp].map((v) => arr[v]).join("");
   return answer;
 };
