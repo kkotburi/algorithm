@@ -1,10 +1,3 @@
-const solution = (balls, share) => {
-  let answer = 1;
-  for (let i = balls; i > balls - share; i--) {
-    answer *= i;
-  }
-  for (let i = share; i > 1; i--) {
-    answer /= i;
-  }
-  return Math.floor(answer);
-};
+const factorial = (num) => (num === 0 ? 1 : num * factorial(num - 1));
+const solution = (balls, share) =>
+  Math.round(factorial(balls) / factorial(balls - share) / factorial(share));
