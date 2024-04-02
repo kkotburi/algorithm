@@ -1,6 +1,9 @@
 const solution = (arr, k) => {
-  const set = Array(k).fill(-1);
-  const unique = arr.filter((a, i) => arr.indexOf(a) === i);
-  set.splice(0, unique.length, ...unique);
-  return set.slice(0, k);
+  let unique = [...new Set(arr)].slice(0, k);
+  if (unique.length < k) {
+    while (unique.length !== k) {
+      unique.push(-1);
+    }
+  }
+  return unique;
 };
