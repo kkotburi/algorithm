@@ -1,8 +1,4 @@
-const solution = (score) => {
-  let average = score.map(([english, math]) => (english + math) / 2);
-  let answer = [];
-  for (let i = 0; i < average.length; i++) {
-    answer.push([...average].sort((a, b) => b - a).indexOf(average[i]) + 1);
-  }
-  return answer;
-};
+const solution = (score) =>
+  score.map(
+    (el) => score.filter((v) => v[0] + v[1] > el[0] + el[1]).length + 1
+  );
