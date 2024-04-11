@@ -1,9 +1,4 @@
-const solution = (n) => {
-  let answer = n;
-  for (let i = 3; i <= answer; i++) {
-    if (!(i % 3) || i.toString().includes(3)) {
-      answer++;
-    }
-  }
-  return answer;
-};
+const solution = (n) =>
+  [...Array(n * 3)]
+    .map((_, i) => i + 1)
+    .filter((v) => v % 3 && !v.toString().includes(3))[n - 1];
