@@ -1,7 +1,7 @@
 const solution = (numbers) => {
   let answer = 0;
   for (let i = 1; i <= 9; i++) {
-    if (!numbers.find((v) => v === i)) {
+    if (!numbers.includes(i)) {
       answer += i;
     }
   }
