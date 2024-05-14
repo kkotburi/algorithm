@@ -3,11 +3,11 @@ const solution = (num) => {
   while (num !== 1) {
     if (num % 2) {
       num = num * 3 + 1;
-      answer++;
     } else {
       num = num / 2;
-      answer++;
     }
+    answer++;
   }
   return answer < 500 ? answer : -1;
 };
+
