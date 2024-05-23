@@ -1,10 +1,2 @@
-const solution = (arr1, arr2) => {
-  let answer = [];
-  for (let i = 0; i < arr1.length; i++) {
-    answer.push([]);
-    for (let j = 0; j < arr1[i].length; j++) {
-      answer[i].push(arr1[i][j] + arr2[i][j]);
-    }
-  }
-  return answer;
-};
+const solution = (arr1, arr2) =>
+  arr1.map((v, i) => v.map((w, j) => w + arr2[i][j]));
