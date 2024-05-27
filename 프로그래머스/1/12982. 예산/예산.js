@@ -1,11 +1,4 @@
-const solution = (d, budget) => {
-  d = d.sort((a, b) => a - b);
-  let answer = 0;
-  for (let i = 0; i < d.length; i++) {
-    if (budget >= d[i]) {
-      budget -= d[i];
-      answer++;
-    }
-  }
-  return answer;
-};
+const solution = (d, budget) =>
+  d
+    .sort((a, b) => a - b)
+    .reduce((count, price) => count + ((budget -= price) >= 0), 0);
