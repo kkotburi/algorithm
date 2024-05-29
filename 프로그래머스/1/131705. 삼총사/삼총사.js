@@ -1,13 +1,13 @@
 const solution = (number) => {
   let answer = 0;
-  for (let i = 0; i < number.length - 2; i++) {
-    for (let j = i + 1; j < number.length - 1; j++) {
-      for (let k = j + 1; k < number.length; k++) {
-        if (!(number[i] + number[j] + number[k])) {
-          answer++;
-        }
-      }
+  const combination = (current, start) => {
+    for (let i = start; i < number.length; i++) {
+      combination([...current, number[i]], i + 1);
     }
-  }
+    if (current.length === 3) {
+      answer += current.reduce((acc, cur) => acc + cur, 0) ? 0 : 1;
+    }
+  };
+  combination([], 0);
   return answer;
 };
