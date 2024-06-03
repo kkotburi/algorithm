@@ -1,8 +1,8 @@
 const solution = (array, commands) =>
-  commands.map(
-    (v) =>
-      array
-        .slice(v[0] - 1, v[1])
-        .sort((a, b) => a - b)
-        .slice(v[2] - 1, v[2])[0]
-  );
+  commands.map((command) => {
+    const [i, j, k] = command;
+    const newArray = array
+      .filter((v, l) => l >= i - 1 && l <= j - 1)
+      .sort((a, b) => a - b);
+    return newArray[k - 1];
+  });
