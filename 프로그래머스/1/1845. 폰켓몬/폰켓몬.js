@@ -1,5 +1,5 @@
 const solution = (nums) => {
-  let numSet = new Set(nums);
-  let halfNumsLength = parseInt(nums.length / 2);
-  return numSet.size > halfNumsLength ? halfNumsLength : numSet.size;
+  let numsSet = [...new Set(nums)];
+  let numsHalf = Math.floor(nums.length / 2);
+  return numsSet.length > numsHalf ? numsHalf : numsSet.length;
 };
