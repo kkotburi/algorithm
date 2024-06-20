@@ -1,9 +1,11 @@
 const solution = (cards1, cards2, goal) => {
-  for (let i of goal) {
-    if (cards1[0] === i) {
-      cards1.shift();
-    } else if (cards2[0] === i) {
-      cards2.shift();
+  let index1 = 0;
+  let index2 = 0;
+  for (let i = 0; i < goal.length; i++) {
+    if (goal[i] === cards1[index1]) {
+      index1++;
+    } else if (goal[i] === cards2[index2]) {
+      index2++;
     } else {
       return "No";
     }
