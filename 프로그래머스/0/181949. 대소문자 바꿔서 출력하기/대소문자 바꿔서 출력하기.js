@@ -10,13 +10,10 @@ rl.on("line", function (line) {
   input = [line];
 }).on("close", function () {
   str = input[0];
-  answer = "";
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === str[i].toLowerCase()) {
-      answer += str[i].toUpperCase();
-    } else {
-      answer += str[i].toLowerCase();
-    }
-  }
-  console.log(answer);
+  regex = /[A-Z]/;
+  console.log(
+    [...str]
+      .map((v) => (regex.test(v) ? v.toLowerCase() : v.toUpperCase()))
+      .join("")
+  );
 });
