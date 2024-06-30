@@ -1,10 +1,10 @@
-const solution = (n, m, section) => {
+const solution = (n, m, sections) => {
   let answer = 0;
-  let paint = 0;
-  for (let i = 0; i < section.length; i++) {
-    if (paint < section[i]) {
+  let painted = 0;
+  for (let section of sections) {
+    if (painted < section) {
       answer++;
-      paint = section[i] + m - 1;
+      painted = section + m - 1;
     }
   }
   return answer;
