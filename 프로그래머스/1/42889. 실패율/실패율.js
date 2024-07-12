@@ -1,11 +1,9 @@
-// 다른 사람 풀이 참고
 const solution = (N, stages) => {
   let answer = [];
   for (let i = 1; i <= N; i++) {
-    let reach = stages.filter((x) => x >= i).length;
-    let curr = stages.filter((x) => x === i).length;
-    answer.push([i, curr / reach]);
+    let arrived = stages.filter((v) => v >= i).length;
+    let fail = stages.filter((v) => v === i).length;
+    answer.push([i, fail / arrived]);
   }
-  answer.sort((a, b) => b[1] - a[1]);
-  return answer.map((v) => v[0]);
+  return answer.sort((a, b) => b[1] - a[1]).map((v) => v[0]);
 };
