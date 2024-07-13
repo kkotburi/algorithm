@@ -1,14 +1,10 @@
 const solution = (people, limit) => {
-  people.sort((a, b) => a - b);
-  let lightest = 0;
-  let heaviest = people.length - 1;
-  let answer = 0;
-  while (lightest <= heaviest) {
-    if (people[lightest] + people[heaviest] <= limit) {
-      lightest++;
+  people.sort((a, b) => b - a);
+  let answer = people.length;
+  for (let i = 0; i < answer - 1; i++) {
+    if (people[i] + people[answer - 1] <= limit) {
+      answer--;
     }
-    heaviest--;
-    answer++;
   }
   return answer;
 };
