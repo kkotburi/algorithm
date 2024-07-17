@@ -1,14 +1,14 @@
 const solution = (n, words) => {
-  for (let i = 0; i < words.length; i++) {
-    let word = words[i];
-    let person = (i % n) + 1;
-    let turn = Math.ceil((i + 1) / n);
-    if (i > 0) {
-      let last = words[i - 1].split("").pop();
-      if (i > words.indexOf(word) || words[i][0] !== last) {
-        return [person, turn];
-      }
+  let answer = [words[0]];
+  for (let i = 1; i < words.length; i++) {
+    if (
+      words[i].charAt(0) !== words[i - 1].charAt(words[i - 1].length - 1) ||
+      answer.find((v) => v === words[i]) ||
+      words[i].length === 1
+    ) {
+      return [(i % n) + 1, Math.ceil((i + 1) / n)];
     }
+    answer.push(words[i]);
   }
   return [0, 0];
 };
