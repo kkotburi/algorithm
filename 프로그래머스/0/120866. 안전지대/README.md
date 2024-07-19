@@ -1,10 +1,10 @@
 # [level 0] 안전지대 - 120866 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120866) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120866?language=javascript) 
 
 ### 성능 요약
 
-메모리: 33.6 MB, 시간: 0.58 ms
+메모리: 33.6 MB, 시간: 0.42 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 25일 22:35:11
+2024년 07월 19일 18:59:07
 
 ### 문제 설명
 
