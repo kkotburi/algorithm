@@ -1,12 +1,10 @@
-function solution(lines) {
-    const start = Math.min(...lines.flat())
-    const end = Math.max(...lines.flat())
-    const lst = [...Array(end-start)].fill(0)    
-    
-    lines.forEach(el => {
-        for(let i=el[0];i<el[1];i++){
-            lst[i-start]+=1
-        }
-    })
-    return lst.reduce((a,c)=> c>1 ? a+1 : a ,0)
-}
+const solution = (lines) => {
+  let line = new Array(200).fill(0);
+  lines.forEach(([a, b]) => {
+    while (a < b) {
+      line[a + 100]++;
+      a++;
+    }
+  });
+  return line.reduce((acc, curr) => (curr > 1 ? acc + 1 : acc), 0);
+};
