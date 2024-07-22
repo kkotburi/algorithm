@@ -1,17 +1,33 @@
-function solution(n) {
-    let ans = Array.from({length:n},()=>[]);
-
-    let rowMin = 1, rowMax = n-1;
-    let colMin = 0, colMax = n-1;
-    let row = col = 0;
-
-    let dir = 'r';
-    for (let i = 1; i <= n*n; i++) {
-        ans[row][col]=i;
-        if (dir === 'r') if (col === colMax) colMax--,row++,dir = 'b'; else col++;
-        else if (dir === 'l') if (col === colMin) colMin++,row--,dir = 't'; else col--;
-        else if (dir === 'b') if (row === rowMax) rowMax--, col--, dir = 'l'; else row++;
-        else if (dir === 't') if (row === rowMin) rowMin++, col++, dir = 'r'; else row--;
+const solution = (n) => {
+  let move = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
+  let answer = Array.from(new Array(n), () => new Array(n).fill(0));
+  let x = 0;
+  let y = 0;
+  let dir = 0;
+  let num = 1;
+  while (num <= n * n) {
+    answer[x][y] = num;
+    let nextX = x + move[dir][0];
+    let nextY = y + move[dir][1];
+    if (
+      nextX >= n ||
+      nextX < 0 ||
+      nextY >= n ||
+      nextY < 0 ||
+      answer[nextX][nextY] !== 0
+    ) {
+      dir = (dir + 1) % 4;
+      nextX = x + move[dir][0];
+      nextY = y + move[dir][1];
     }
-    return ans;
-}
+    x = nextX;
+    y = nextY;
+    num++;
+  }
+  return answer;
+};
