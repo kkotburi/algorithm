@@ -1,38 +1,21 @@
 const solution = (a, b, c, d) => {
-  let nums = [a, b, c, d];
-  let appear = {};
+  if (a === b && a === c && a === d) return 1111 * a;
 
-  for (let i = 0; i < 4; i++) {
-    const num = nums[i];
-    appear[num] = (appear[num] || 0) + 1;
-  }
+  if (a === b && a === c) return (10 * a + d) ** 2;
+  if (a === b && a === d) return (10 * a + c) ** 2;
+  if (a === c && a === d) return (10 * a + b) ** 2;
+  if (b === c && b === d) return (10 * b + a) ** 2;
 
-  let count = Math.max(...Object.values(appear));
-  let entries = Object.entries(appear).sort((a, b) => a[1] - b[1]);
-  let answer = 0;
+  if (a === b && c === d) return (a + c) * Math.abs(a - c);
+  if (a === c && b === d) return (a + b) * Math.abs(a - b);
+  if (a === d && b === c) return (a + b) * Math.abs(a - b);
 
-  switch (count) {
-    case 4:
-      answer = 1111 * a;
-      break;
-    case 3:
-      answer = (10 * Number(entries[1][0]) + Number(entries[0][0])) ** 2;
-      break;
-    case 2:
-      if (entries.length === 2) {
-        answer =
-          (Number(entries[1][0]) + Number(entries[0][0])) *
-          Math.abs(Number(entries[1][0]) - Number(entries[0][0]));
-      }
-      if (entries.length === 3) {
-        const newEntries = entries.filter((el) => el[1] === 1);
-        answer = Number(newEntries[1][0]) * Number(newEntries[0][0]);
-      }
-      break;
-    case 1:
-      answer = Math.min(...nums);
-      break;
-  }
+  if (a === b) return c * d;
+  if (a === c) return b * d;
+  if (a === d) return b * c;
+  if (b === c) return a * d;
+  if (b === d) return a * c;
+  if (c === d) return a * b;
 
-  return answer;
+  return Math.min(a, b, c, d);
 };
