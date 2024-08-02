@@ -1,28 +1,24 @@
 const solution = (a, b, c, d) => {
   let arr = [a, b, c, d];
-  let obj = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
-
-  for (let i = 0; i < arr.length; i++) {
-    obj[arr[i]]++;
+  
+  let map = new Map();
+  for (const num of arr) {
+    map.set(num, (map.get(num) || 0) + 1);
   }
 
-  let values = Object.values(obj);
+  let sortedMap = [...map.keys()].sort((a, b) => map.get(b) - map.get(a));
+  let maxFqc = Math.max(...map.values());
+  let [p, q, r, s] = sortedMap;
 
-  if (values.find((v) => v === 4)) {
-    return 1111 * values.indexOf(4);
+  if (sortedMap.length === 1) {
+    return p * 1111;
   }
-  if (values.find((v) => v === 3)) {
-    return (10 * values.indexOf(3) + values.indexOf(1)) ** 2;
+  if (sortedMap.length === 2) {
+    return maxFqc === 3 ? (10 * p + q) ** 2 : (p + q) * Math.abs(p - q);
   }
-  if (values.filter((v) => v === 2).length === 2) {
-    return (
-      (values.indexOf(2) + values.lastIndexOf(2)) *
-      Math.abs(values.indexOf(2) - values.lastIndexOf(2))
-    );
-  }
-  if (values.filter((v) => v === 2).length === 1) {
-    return values.indexOf(1) * values.lastIndexOf(1);
+  if (sortedMap.length === 3) {
+    return q * r;
   }
 
-  return Math.min(...arr);
+  return Math.min(p, q, r, s);
 };
