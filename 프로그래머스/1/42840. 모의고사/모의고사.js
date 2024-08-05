@@ -1,21 +1,24 @@
 const solution = (answers) => {
-  let answer = [];
-  let man1 = [1, 2, 3, 4, 5];
-  let man2 = [2, 1, 2, 3, 2, 4, 2, 5];
-  let man3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
-  let count = [0, 0, 0];
+  const A = "12345".split("");
+  const B = "21232425".split("");
+  const C = "3311224455".split("");
 
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i] == man1[i % man1.length]) count[0]++;
-    if (answers[i] == man2[i % man2.length]) count[1]++;
-    if (answers[i] == man3[i % man3.length]) count[2]++;
+  const scores = [A, B, C]
+    .map((p) => {
+      return answers
+        .map((answer, i) => answer === Number(p[i % p.length]))
+        .filter((c) => c).length;
+    })
+    .map((score, i) => ({ id: i + 1, score }))
+    .sort((a, b) => b.score - a.score);
+
+  const ret = [];
+
+  while (scores.length) {
+    const p = scores.shift();
+    if (ret[0] && ret[0].score !== p.score) break;
+    ret.push(p);
   }
 
-  let max = Math.max(count[0], count[1], count[2]);
-
-  for (let i = 0; i < count.length; i++) {
-    if (max == count[i]) answer.push(i + 1);
-  }
-
-  return answer;
+  return ret.map((p) => p.id).sort();
 };
