@@ -1,24 +1,24 @@
 const solution = (answers) => {
-  const A = "12345".split("");
-  const B = "21232425".split("");
-  const C = "3311224455".split("");
+  let answer = [];
+  let a1 = [1, 2, 3, 4, 5];
+  let a2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  let a3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
 
-  const scores = [A, B, C]
-    .map((p) => {
-      return answers
-        .map((answer, i) => answer === Number(p[i % p.length]))
-        .filter((c) => c).length;
-    })
-    .map((score, i) => ({ id: i + 1, score }))
-    .sort((a, b) => b.score - a.score);
+  let b1 = answers.filter((a, i) => a === a1[i % a1.length]).length;
+  let b2 = answers.filter((a, i) => a === a2[i % a2.length]).length;
+  let b3 = answers.filter((a, i) => a === a3[i % a3.length]).length;
 
-  const ret = [];
+  let max = Math.max(b1, b2, b3);
 
-  while (scores.length) {
-    const p = scores.shift();
-    if (ret[0] && ret[0].score !== p.score) break;
-    ret.push(p);
+  if (b1 === max) {
+    answer.push(1);
+  }
+  if (b2 === max) {
+    answer.push(2);
+  }
+  if (b3 === max) {
+    answer.push(3);
   }
 
-  return ret.map((p) => p.id).sort();
+  return answer;
 };
