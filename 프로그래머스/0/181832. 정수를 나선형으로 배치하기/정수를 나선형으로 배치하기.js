@@ -6,9 +6,9 @@ const solution = (n) => {
     [0, -1],
     [-1, 0],
   ];
+  let dir = 0;
   let col = 0;
   let row = 0;
-  let dir = 0;
   let num = 1;
 
   while (num <= n * n) {
