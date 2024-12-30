@@ -1,37 +1,23 @@
 const solution = (topping) => {
+  const a = new Set();
+  const b = {};
+  let check = 0;
   let answer = 0;
-  let leftHash = {};
-  let rightHash = {};
-  let leftSort = 0;
-  let rightSort = 0;
 
-  for (const tp of topping) {
-    if (rightHash[tp]) {
-      rightHash[tp] += 1;
+  for (let i = 0; i < topping.length; i++) {
+    if (b[topping[i]]) {
+      b[topping[i]]++;
     } else {
-      rightHash[tp] = 1;
-      rightSort += 1;
+      b[topping[i]] = 1;
+      check++;
     }
   }
 
   for (let i = 0; i < topping.length; i++) {
-    if (leftHash[topping[i]]) {
-      leftHash[topping[i]] += 1;
-    } else {
-      leftHash[topping[i]] = 1;
-      leftSort += 1;
-    }
-
-    if (rightHash[topping[i]] - 1) {
-      rightHash[topping[i]] -= 1;
-    } else {
-      delete rightHash[topping[i]];
-      rightSort -= 1;
-    }
-
-    if (leftSort === rightSort) {
-      answer += 1;
-    }
+    a.add(topping[i]);
+    b[topping[i]]--;
+    if (!b[topping[i]]) check--;
+    if (a.size === check) answer++;
   }
 
   return answer;
