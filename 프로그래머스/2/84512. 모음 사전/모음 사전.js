@@ -1,4 +1,4 @@
-function solution(word) {
+const solution = (word) => {
   let answer = 0;
   const vowels = ["A", "E", "I", "O", "U"];
   const counts = [781, 156, 31, 6, 1];
@@ -8,4 +8,4 @@ function solution(word) {
   }
 
   return answer;
-}
+};
