@@ -1,5 +1,20 @@
-const solution = (words) =>
-  [...words].reduce(
-    (a, c, i) => a + "AEIOU".indexOf(c) * ~~(781 / 5 ** i) + 1,
-    0
-  );
+const solution = (word) => {
+  const vowels = ["A", "E", "I", "O", "U", ""];
+  const vowelsMap = (a) => vowels.map((b) => b + a);
+
+  return Array.from(
+    new Set(
+      vowels
+        .map(vowelsMap)
+        .flat()
+        .map(vowelsMap)
+        .flat()
+        .map(vowelsMap)
+        .flat()
+        .map(vowelsMap)
+        .flat()
+    )
+  )
+    .sort()
+    .indexOf(word);
+};
