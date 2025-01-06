@@ -1,18 +1,7 @@
-const solution = (word) => {
-  let res = {};
-  let idx = 0;
-  let arr = ["A", "E", "I", "O", "U"];
-
-  const dfs = (now, cnt) => {
-    if (cnt > 5) return;
-    res[now] = idx++;
-    for (let i = 0; i < 5; i++) {
-      let next = now + arr[i];
-      dfs(next, cnt + 1);
-    }
-  };
-
-  dfs("", 0);
-
-  return res[word];
-};
+const solution = (word) =>
+  word
+    .split("")
+    .reduce(
+      (a, b, i) => a + ("AEIOU".indexOf(b) * (5 ** (5 - i) - 1)) / 4 + 1,
+      0
+    );
