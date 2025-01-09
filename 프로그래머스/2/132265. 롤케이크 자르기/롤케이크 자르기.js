@@ -1,19 +1,31 @@
 const solution = (topping) => {
-  const [b1Dict, b1Arr, b2Dict, b2Arr] = [new Set(), [], new Set(), []];
+  let answer = 0;
+  const map = new Map();
+  const set = new Set();
 
-  topping.forEach((t1, i) => {
-    const t2 = topping.at(-i);
+  for (let index = 0; index < topping.length; index++) {
+    const key = topping[index];
+    if (map.has(key)) {
+      const value = map.get(key);
+      map.set(key, value + 1);
+    } else {
+      map.set(key, 1);
+    }
+  }
 
-    b1Dict.add(t1);
+  for (let index = 0; index < topping.length; index++) {
+    const targetTopping = topping[index];
+    set.add(targetTopping);
+    const value = map.get(targetTopping);
+    if (value === 1) {
+      map.delete(targetTopping);
+    } else {
+      map.set(targetTopping, value - 1);
+    }
+    if (set.size === map.size) {
+      answer += 1;
+    }
+  }
 
-    if (i !== 0) b2Dict.add(t2);
-
-    b1Arr.push(b1Dict.size);
-    b2Arr.push(b2Dict.size);
-  });
-
-  return b1Arr.reduce(
-    (acc, cur, i) => (cur === b2Arr.at(-i - 1) ? acc + 1 : acc),
-    0
-  );
+  return answer;
 };
