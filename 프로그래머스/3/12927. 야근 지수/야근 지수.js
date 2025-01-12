@@ -1,68 +1,91 @@
 class MaxHeap {
   constructor() {
-    this.heap = [null];
+    this.heap = [];
   }
 
-  push(value) {
-    this.heap.push(value);
-    let currentIndex = this.heap.length - 1;
-    let parentIndex = Math.floor(currentIndex / 2);
-
-    while (parentIndex !== 0 && this.heap[parentIndex] < value) {
-      const temp = this.heap[parentIndex];
-      this.heap[parentIndex] = value;
-      this.heap[currentIndex] = temp;
-
-      currentIndex = parentIndex;
-      parentIndex = Math.floor(currentIndex / 2);
-    }
+  push(n) {
+    this.heap.push(n);
+    this.heapifyUp();
   }
 
   pop() {
-    if (this.heap.length === 2) return this.heap.pop();
+    if (this.heap.length === 0) return null;
+    let root = this.heap[0];
+    const lastNode = this.heap.pop();
 
-    const returnValue = this.heap[1];
-    this.heap[1] = this.heap.pop();
-
-    let currentIndex = 1;
-    let leftIndex = 2;
-    let rightIndex = 3;
-    while (
-      this.heap[currentIndex] < this.heap[leftIndex] ||
-      this.heap[currentIndex] < this.heap[rightIndex]
-    ) {
-      if (this.heap[leftIndex] < this.heap[rightIndex]) {
-        const temp = this.heap[currentIndex];
-        this.heap[currentIndex] = this.heap[rightIndex];
-        this.heap[rightIndex] = temp;
-        currentIndex = rightIndex;
-      } else {
-        const temp = this.heap[currentIndex];
-        this.heap[currentIndex] = this.heap[leftIndex];
-        this.heap[leftIndex] = temp;
-        currentIndex = leftIndex;
-      }
-      leftIndex = currentIndex * 2;
-      rightIndex = currentIndex * 2 + 1;
+    if (this.heap.length > 0) {
+      this.heap[0] = lastNode;
+      this.heapifyDown();
     }
-    return returnValue;
+
+    return root;
+  }
+
+  swap(a, b) {
+    [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+  }
+
+  heapifyUp() {
+    let index = this.heap.length - 1;
+
+    while (index > 0) {
+      const parentIdx = Math.floor((index - 1) / 2);
+
+      if (this.heap[index] <= this.heap[parentIdx]) break;
+      this.swap(index, parentIdx);
+      index = parentIdx;
+    }
+  }
+
+  heapifyDown() {
+    let index = 0;
+
+    while (true) {
+      let biggest = index;
+      const leftChildIndex = 2 * index + 1;
+      const rightChildIndex = 2 * index + 2;
+
+      if (
+        this.heap[leftChildIndex] &&
+        this.heap[leftChildIndex] > this.heap[biggest]
+      ) {
+        biggest = leftChildIndex;
+      }
+
+      if (
+        this.heap[rightChildIndex] &&
+        this.heap[rightChildIndex] > this.heap[biggest]
+      ) {
+        biggest = rightChildIndex;
+      }
+      if (biggest === index) break;
+
+      this.swap(index, biggest);
+      index = biggest;
+    }
   }
 }
 
 const solution = (n, works) => {
+  const sortedWorks = works.sort((a, b) => b - a);
+  const len = sortedWorks.length;
+  let answer = 0;
   const heap = new MaxHeap();
 
-  for (let i = 0; i < works.length; i++) {
-    heap.push(works[i]);
+  for (let i = 0; i < len; i++) {
+    heap.push(sortedWorks[i]);
   }
 
   for (let i = 0; i < n; i++) {
-    let peekValue = heap.pop() - 1;
-    if (peekValue < 0) peekValue = 0;
-    heap.push(peekValue);
+    let big = heap.pop();
+
+    if (big === 0) return 0;
+    heap.push(big - 1);
   }
 
-  return heap.heap
-    .filter((item) => item !== null)
-    .reduce((acc, item) => acc + item ** 2, 0);
+  for (let i = 0; i < len; i++) {
+    answer += heap.pop() ** 2;
+  }
+
+  return answer;
 };
