@@ -1,16 +1,12 @@
 const solution = (numbers) => {
-  let answer = Array(numbers.length);
-  let check = [0];
+  let answer = new Array(numbers.length).fill(-1);
+  let stack = [];
 
-  for (let i = 1; i < numbers.length; i++) {
-    while (check.length && numbers[check[check.length - 1]] < numbers[i]) {
-      answer[check.pop()] = numbers[i];
+  for (let i = 0; i < numbers.length; i++) {
+    while (stack && numbers[stack.at(-1)] < numbers[i]) {
+      answer[stack.pop()] = numbers[i];
     }
-    check.push(i);
-  }
-
-  while (check.length) {
-    answer[check.pop()] = -1;
+    stack.push(i);
   }
 
   return answer;
