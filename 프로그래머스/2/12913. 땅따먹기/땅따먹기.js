@@ -1,12 +1,15 @@
-const solution = (land) =>
-  Math.max(
-    ...land.reduce(
-      (a, c) => [
-        c[0] + Math.max(a[1], a[2], a[3]),
-        c[1] + Math.max(a[0], a[2], a[3]),
-        c[2] + Math.max(a[0], a[1], a[3]),
-        c[3] + Math.max(a[0], a[1], a[2]),
-      ],
-      [0, 0, 0, 0]
-    )
-  );
+const solution = (land) => {
+  let max = 0;
+  let idx = 0;
+
+  for (let i = 1; i < land.length; i++) {
+    max = Math.max(...land[i - 1]);
+    idx = land[i - 1].indexOf(max);
+    land[i - 1][idx] = 0;
+    land[i] = land[i].map(
+      (v, j) => (v += j === idx ? Math.max(...land[i - 1]) : max)
+    );
+  }
+
+  return Math.max(...land[land.length - 1]);
+};
