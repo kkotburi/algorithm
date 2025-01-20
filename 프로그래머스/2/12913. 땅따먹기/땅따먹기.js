@@ -1,15 +1,17 @@
 const solution = (land) => {
-  let max = 0;
-  let idx = 0;
+  let landLen = land.length;
 
-  for (let i = 1; i < land.length; i++) {
-    max = Math.max(...land[i - 1]);
-    idx = land[i - 1].indexOf(max);
-    land[i - 1][idx] = 0;
-    land[i] = land[i].map(
-      (v, j) => (v += j === idx ? Math.max(...land[i - 1]) : max)
-    );
+  for (let i = 0; i < land.length - 1; i++) {
+    land[i + 1][0] += Math.max(land[i][1], land[i][2], land[i][3]);
+    land[i + 1][1] += Math.max(land[i][0], land[i][2], land[i][3]);
+    land[i + 1][2] += Math.max(land[i][0], land[i][1], land[i][3]);
+    land[i + 1][3] += Math.max(land[i][0], land[i][1], land[i][2]);
   }
 
-  return Math.max(...land[land.length - 1]);
+  return Math.max(
+    land[landLen - 1][0],
+    land[landLen - 1][1],
+    land[landLen - 1][2],
+    land[landLen - 1][3]
+  );
 };
