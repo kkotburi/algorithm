@@ -1,28 +1,25 @@
 const solution = (fees, records) => {
-  const parking = {};
+  const answer = [];
+  const parkingTime = {};
 
   records.forEach((v) => {
-    const [time, id, status] = v.split(" ");
-    const [hour, minute] = time.split(":");
-    const replaceTime = hour * 60 + +minute;
+    let [time, id, type] = v.split(" ");
+    let [hour, minute] = time.split(":");
+    time = hour * 1 * 60 + minute * 1;
 
-    if (!parking[id]) parking[id] = { time: 0, id };
-
-    parking[id].status = status;
-
-    if (status === "IN") {
-      parking[id].lastInTime = replaceTime;
-      return;
-    }
-
-    parking[id].time += replaceTime - parking[id].lastInTime;
+    if (!parkingTime[id]) parkingTime[id] = 0;
+    if (type === "IN") parkingTime[id] += 1439 - time;
+    if (type === "OUT") parkingTime[id] -= 1439 - time;
   });
 
-  return Object.values(parking)
-    .sort((a, b) => a.id - b.id)
-    .map((v) => {
-      if (v.status === "IN") v.time += 1439 - v.lastInTime;
-      if (fees[0] > v.time) return fees[1];
-      return fees[1] + Math.ceil((v.time - fees[0]) / fees[2]) * fees[3];
-    });
+  for (let [car, time] of Object.entries(parkingTime)) {
+    if (time <= fees[0]) {
+      time = fees[1];
+    } else {
+      time = Math.ceil((time - fees[0]) / fees[2]) * fees[3] + fees[1];
+    }
+    answer.push([car, time]);
+  }
+
+  return answer.sort((a, b) => a[0] - b[0]).map((v) => v[1]);
 };
