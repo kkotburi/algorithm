@@ -37,6 +37,7 @@ const solution = (scoville, K) => {
         break;
       }
     }
+
     if (mixed[i] !== undefined) {
       if (underK.length) {
         if (underK.at(-1) < mixed[i]) {
