@@ -14,13 +14,12 @@ const solution = (scoville, K) => {
 
   let mixed = [];
   let m_i = 0;
-  let i = 0;
   let n1 = 0;
   let n2 = 0;
 
   while (1) {
     if (mixed[m_i] != undefined) {
-      if (under_K.length != 0) {
+      if (under_K.length) {
         if (under_K.at(-1) < mixed[m_i]) {
           n1 = under_K.pop();
         } else {
@@ -32,14 +31,14 @@ const solution = (scoville, K) => {
         ++m_i;
       }
     } else {
-      if (under_K.length != 0) {
+      if (under_K.length) {
         n1 = under_K.pop();
       } else {
         break;
       }
     }
     if (mixed[m_i] != undefined) {
-      if (under_K.length != 0) {
+      if (under_K.length) {
         if (under_K.at(-1) < mixed[m_i]) {
           n2 = under_K.pop();
         } else {
@@ -51,7 +50,7 @@ const solution = (scoville, K) => {
         ++m_i;
       }
     } else {
-      if (under_K.length != 0) {
+      if (under_K.length) {
         n2 = under_K.pop();
       } else {
         ++cnt;
@@ -64,6 +63,7 @@ const solution = (scoville, K) => {
     } else {
       flag = 1;
     }
+
     ++cnt;
   }
 
