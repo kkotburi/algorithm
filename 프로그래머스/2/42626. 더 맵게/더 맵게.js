@@ -1,59 +1,59 @@
 const solution = (scoville, K) => {
   scoville.sort((a, b) => b - a);
-  let cnt = 0;
-  let under_K = [];
+  let count = 0;
+  let underK = [];
   let flag = 0;
 
   for (let i = 0; i < scoville.length; ++i) {
     if (scoville[i] < K) {
-      under_K.push(scoville[i]);
+      underK.push(scoville[i]);
     } else {
       flag = 1;
     }
   }
 
   let mixed = [];
-  let m_i = 0;
+  let i = 0;
   let n1 = 0;
   let n2 = 0;
 
   while (1) {
-    if (mixed[m_i] != undefined) {
-      if (under_K.length) {
-        if (under_K.at(-1) < mixed[m_i]) {
-          n1 = under_K.pop();
+    if (mixed[i] != undefined) {
+      if (underK.length) {
+        if (underK.at(-1) < mixed[i]) {
+          n1 = underK.pop();
         } else {
-          n1 = mixed[m_i];
-          ++m_i;
+          n1 = mixed[i];
+          i++;
         }
       } else {
-        n1 = mixed[m_i];
-        ++m_i;
+        n1 = mixed[i];
+        i++;
       }
     } else {
-      if (under_K.length) {
-        n1 = under_K.pop();
+      if (underK.length) {
+        n1 = underK.pop();
       } else {
         break;
       }
     }
-    if (mixed[m_i] != undefined) {
-      if (under_K.length) {
-        if (under_K.at(-1) < mixed[m_i]) {
-          n2 = under_K.pop();
+    if (mixed[i] != undefined) {
+      if (underK.length) {
+        if (underK.at(-1) < mixed[i]) {
+          n2 = underK.pop();
         } else {
-          n2 = mixed[m_i];
-          ++m_i;
+          n2 = mixed[i];
+          i++;
         }
       } else {
-        n2 = mixed[m_i];
-        ++m_i;
+        n2 = mixed[i];
+        i++;
       }
     } else {
-      if (under_K.length) {
-        n2 = under_K.pop();
+      if (underK.length) {
+        n2 = underK.pop();
       } else {
-        ++cnt;
+        count++;
         break;
       }
     }
@@ -64,11 +64,11 @@ const solution = (scoville, K) => {
       flag = 1;
     }
 
-    ++cnt;
+    count++;
   }
 
   if (flag == 1) {
-    return cnt;
+    return count;
   } else {
     return -1;
   }
