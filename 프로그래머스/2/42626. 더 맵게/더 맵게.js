@@ -18,7 +18,7 @@ const solution = (scoville, K) => {
   let n2 = 0;
 
   while (1) {
-    if (mixed[i] != undefined) {
+    if (mixed[i] !== undefined) {
       if (underK.length) {
         if (underK.at(-1) < mixed[i]) {
           n1 = underK.pop();
@@ -37,7 +37,7 @@ const solution = (scoville, K) => {
         break;
       }
     }
-    if (mixed[i] != undefined) {
+    if (mixed[i] !== undefined) {
       if (underK.length) {
         if (underK.at(-1) < mixed[i]) {
           n2 = underK.pop();
@@ -67,7 +67,7 @@ const solution = (scoville, K) => {
     count++;
   }
 
-  if (flag == 1) {
+  if (flag === 1) {
     return count;
   } else {
     return -1;
