@@ -1,9 +1,11 @@
 const solution = (n) => {
-  let arr = [0, 1, 2];
+  const dp = Array(n).fill(0);
+  dp[1] = 1;
+  dp[2] = 2;
 
   for (let i = 3; i <= n; i++) {
-    arr[i] = (arr[i - 2] + arr[i - 1]) % 1000000007;
+    dp[i] = (dp[i - 1] + dp[i - 2]) % 1000000007;
   }
 
-  return arr[n];
+  return dp[n];
 };
