@@ -1,12 +1,11 @@
 const solution = (ingredient) => {
   let answer = 0;
-  const stack = [];
 
-  for (let i of ingredient) {
-    stack.push(i);
-    if (stack.slice(-4).join("") === "1231") {
-      stack.splice(-4);
+  for (let i = 0; i < ingredient.length; i++) {
+    if (ingredient.slice(i, i + 4).join("") === "1231") {
       answer++;
+      ingredient.splice(i, 4);
+      i -= 3;
     }
   }
 
