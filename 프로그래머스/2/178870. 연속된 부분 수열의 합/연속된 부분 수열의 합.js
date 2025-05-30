@@ -1,7 +1,7 @@
 const solution = (sequence, k) => {
+  const answer = [];
   let [start, end] = [0, 0];
   let sum = sequence[start];
-  const answer = [];
 
   while (end < sequence.length) {
     if (sum < k) {
