@@ -1,19 +1,26 @@
 const solution = (sequence, k) => {
-  const answer = [];
-  let [start, end] = [0, 0];
-  let sum = sequence[start];
+  let answer = [0, sequence.length - 1];
+  let left = 0;
+  let right = 0;
+  let sum = sequence[left];
 
-  while (end < sequence.length) {
-    if (sum < k) {
-      sum += sequence[++end];
-    } else if (sum > k) {
-      sum -= sequence[start++];
+  while (right < sequence.length) {
+    if (sum > k) {
+      sum -= sequence[left];
+      left++;
+    } else if (sum < k) {
+      right++;
+      sum += sequence[right];
     } else {
-      answer.push([start, end]);
-      sum += sequence[++end];
-      sum -= sequence[start++];
+      let distance = answer[1] - answer[0];
+      let currentDistance = right - left;
+      if (distance > currentDistance) {
+        answer = [left, right];
+      }
+      sum -= sequence[left];
+      left++;
     }
   }
 
-  return answer.sort((a, b) => a[1] - a[0] - (b[1] - b[0]))[0];
+  return answer;
 };
