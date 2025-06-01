@@ -1,25 +1,15 @@
 const solution = (sequence, k) => {
-  let answer = [0, sequence.length - 1];
-  let left = 0;
-  let right = 0;
-  let sum = sequence[left];
+  let [left, right] = [0, 0];
+  let sum = sequence[0];
+  let answer = [0, sequence.length];
 
-  while (right < sequence.length) {
-    if (sum > k) {
-      sum -= sequence[left];
-      left++;
-    } else if (sum < k) {
-      right++;
-      sum += sequence[right];
-    } else {
-      let distance = answer[1] - answer[0];
-      let currentDistance = right - left;
-      if (distance > currentDistance) {
-        answer = [left, right];
-      }
-      sum -= sequence[left];
-      left++;
-    }
+  while (left < sequence.length) {
+    if (sum < k && right < sequence.length) {
+      sum += sequence[++right];
+    } else if (sum === k && right - left < answer[1] - answer[0]) {
+      answer = [left, right];
+      sum += sequence[++right];
+    } else sum -= sequence[left++];
   }
 
   return answer;
