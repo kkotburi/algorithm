@@ -1,7 +1,6 @@
 const solution = (numbers, hand) => {
   let position = [1, 4, 4, 4, 3, 3, 3, 2, 2, 2];
   let direction = { L: [1, 1], R: [1, 1] };
-
   hand = hand[0] === "r" ? "R" : "L";
 
   let answer = numbers.map((x) => {
@@ -9,7 +8,6 @@ const solution = (numbers, hand) => {
       direction.L = [position[x], 1];
       return "L";
     }
-
     if (/[369]/.test(x)) {
       direction.R = [position[x], 1];
       return "R";
@@ -22,7 +20,6 @@ const solution = (numbers, hand) => {
       direction[hand] = [position[x], 0];
       return hand;
     }
-
     if (distL < distR) {
       direction.L = [position[x], 0];
       return "L";
