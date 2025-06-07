@@ -1,34 +1,54 @@
 const solution = (numbers, hand) => {
-  let position = [1, 4, 4, 4, 3, 3, 3, 2, 2, 2];
-  let direction = { L: [1, 1], R: [1, 1] };
-  hand = hand[0] === "r" ? "R" : "L";
+  let answer = "";
 
-  let answer = numbers.map((x) => {
-    if (/[147]/.test(x)) {
-      direction.L = [position[x], 1];
-      return "L";
+  const grid = [
+    [0, -2],
+    [-1, 1],
+    [0, 1],
+    [1, 1],
+    [-1, 0],
+    [0, 0],
+    [1, 0],
+    [-1, -1],
+    [0, -1],
+    [1, -1],
+    [-1, -2],
+    [1, -2],
+  ];
+  let L = 10;
+  let R = 11;
+  let L_steps, R_steps;
+  hand = hand[0].toUpperCase();
+
+  numbers.forEach((el) => {
+    switch (grid[el][0]) {
+      case -1:
+        answer += "L";
+        L = el;
+        break;
+      case 1:
+        answer += "R";
+        R = el;
+        break;
+      case 0:
+        L_steps =
+          Math.abs(grid[L][0] - grid[el][0]) +
+          Math.abs(grid[L][1] - grid[el][1]);
+        R_steps =
+          Math.abs(grid[R][0] - grid[el][0]) +
+          Math.abs(grid[R][1] - grid[el][1]);
+        if (L_steps > R_steps) {
+          answer += "R";
+          R = el;
+        } else if (L_steps < R_steps) {
+          answer += "L";
+          L = el;
+        } else {
+          answer += hand;
+          eval(`${hand} = el`);
+        }
     }
-    if (/[369]/.test(x)) {
-      direction.R = [position[x], 1];
-      return "R";
-    }
-
-    let distL = Math.abs(position[x] - direction.L[0]) + direction.L[1];
-    let distR = Math.abs(position[x] - direction.R[0]) + direction.R[1];
-
-    if (distL === distR) {
-      direction[hand] = [position[x], 0];
-      return hand;
-    }
-    if (distL < distR) {
-      direction.L = [position[x], 0];
-      return "L";
-    }
-
-    direction.R = [position[x], 0];
-
-    return "R";
   });
 
-  return answer.join("");
+  return answer;
 };
