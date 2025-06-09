@@ -1,28 +1,19 @@
 const solution = (msg) => {
-  let answer = [];
-  let map = new Map();
-  let index = 27;
-  let w = "";
-  let c = "";
-  let temp = 0;
+  const answer = [];
+  const dict = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").reduce((dict, c, i) => {
+    dict[c] = i + 1;
+    return dict;
+  }, {});
+  dict.nextId = 27;
 
-  for (let i = 0; i < msg.length; i++) {
-    w = msg[i];
-    c = msg[i + 1];
+  for (let i = 0, j = 0; i < msg.length; i = j) {
+    j = msg.length;
+    let longest = "";
 
-    if (!map.get(w + c)) {
-      map.set(w + c, index++);
-      answer.push(w.charCodeAt() - 64);
-    } else {
-      while (map.get(w + c)) {
-        temp = w + c;
-        w = w + c;
-        c = msg[++i + 1];
-      }
+    while (dict[(longest = msg.substring(i, j))] === undefined) --j;
 
-      map.set(w + c, index++);
-      answer.push(map.get(temp));
-    }
+    answer.push(dict[longest]);
+    dict[longest + msg[j]] = dict.nextId++;
   }
 
   return answer;
