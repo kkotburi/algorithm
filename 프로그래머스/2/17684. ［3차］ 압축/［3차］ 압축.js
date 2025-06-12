@@ -1,48 +1,24 @@
 const solution = (msg) => {
-  const answer = [];
-  const dic = {
-    A: 1,
-    B: 2,
-    C: 3,
-    D: 4,
-    E: 5,
-    F: 6,
-    G: 7,
-    H: 8,
-    I: 9,
-    J: 10,
-    K: 11,
-    L: 12,
-    M: 13,
-    N: 14,
-    O: 15,
-    P: 16,
-    Q: 17,
-    R: 18,
-    S: 19,
-    T: 20,
-    U: 21,
-    V: 22,
-    W: 23,
-    X: 24,
-    Y: 25,
-    Z: 26,
-  };
-  let next = "";
-  let index = 27;
+  let answer = [];
+  let dic = [""].concat(
+    [...Array(26).keys()].map((v) => String.fromCharCode(v + 65))
+  );
 
-  const s = msg.split("").reduce((acc, cur) => {
-    next = acc + cur;
+  while (msg.length) {
+    for (let i = dic.length - 1; i >= 0; i--) {
+      let characters = dic[i];
 
-    if (dic[next] === undefined) {
-      dic[next] = index++;
-    } else return acc + cur;
+      if (new RegExp("^" + characters).test(msg)) {
+        let newCharacter = msg.substr(0, characters.length + 1);
 
-    if (dic[acc] !== undefined) answer.push(dic[acc]);
-    return cur;
-  });
+        if (dic.indexOf(newCharacter) < 0) dic.push(newCharacter);
 
-  answer.push(dic[s]);
+        msg = msg.substr(characters.length);
+        answer.push(i);
+        break;
+      }
+    }
+  }
 
   return answer;
 };
