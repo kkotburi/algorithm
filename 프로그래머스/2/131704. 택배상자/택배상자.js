@@ -1,12 +1,23 @@
 const solution = (order) => {
   let answer = 0;
+  let box = 1;
   const stack = [];
 
-  for (let i = 1; i <= order.length; i++) {
-    stack.push(i);
-    while (stack.length && stack.at(-1) === order[answer]) {
+  while (true) {
+    if (order.length === answer) break;
+
+    if (order[answer] === box) {
+      answer++;
+      box++;
+    } else if (stack[stack.length - 1] === order[answer]) {
       stack.pop();
       answer++;
+    } else if (stack[stack.length - 1] !== order[answer]) {
+      if (order[answer] < stack[stack.length - 1]) {
+        break;
+      }
+      stack.push(box);
+      box++;
     }
   }
 
