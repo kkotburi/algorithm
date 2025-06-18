@@ -1,25 +1,25 @@
 const solution = (x, y, n) => {
-  if (x === y) return 0;
+  const queue = [[x, 0]];
+  const done = {};
 
-  const dp = {};
-  dp[x] = 0;
-  let data = [x];
+  let [l, r] = [0, 1];
+  let answer = Infinity;
 
-  while (data.length) {
-    const newData = [];
+  while (l < r) {
+    const [num, count] = queue[l++];
 
-    for (const d of data) {
-      for (const e of [d + n, d * 2, d * 3]) {
-        if (e > y || dp[e]) continue;
-        if (e === y) return dp[d] + 1;
-
-        dp[e] = dp[d] + 1;
-        newData.push(e);
-      }
+    if (done[num] || num > y) continue;
+    if (num === y) {
+      answer = Math.min(answer, count);
+      continue;
     }
 
-    data = newData;
+    done[num] = true;
+
+    queue[r++] = [num * 3, count + 1];
+    queue[r++] = [num * 2, count + 1];
+    queue[r++] = [num + n, count + 1];
   }
 
-  return -1;
+  return answer === Infinity ? -1 : answer;
 };
