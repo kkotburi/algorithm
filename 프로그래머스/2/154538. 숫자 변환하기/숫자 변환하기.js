@@ -1,22 +1,14 @@
 const solution = (x, y, n) => {
-  let answer = 0;
-  let test = [x];
+  let que = [[y, 0]];
 
-  if (x === y) return 0;
+  while (que.length) {
+    const [num, i] = que.shift();
 
-  while (true) {
-    const set = new Set();
-    answer++;
-
-    test.forEach((item) => {
-      if (item + n <= y) set.add(item + n);
-      if (item * 2 <= y) set.add(item * 2);
-      if (item * 3 <= y) set.add(item * 3);
-    });
-
-    if (set.size === 0) return -1;
-    if (set.has(y)) return answer;
-
-    test = set;
+    if (num === x) return i;
+    if (num % 2 === 0 && num / 2 >= x) que.push([num / 2, i + 1]);
+    if (num % 3 === 0 && num / 3 >= x) que.push([num / 3, i + 1]);
+    if (num - n >= x) que.push([num - n, i + 1]);
   }
+
+  return -1;
 };
