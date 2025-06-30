@@ -1,10 +1,4 @@
 const solution = (skill, skill_trees) =>
-  skill_trees.filter(
-    (skill_tree) =>
-      !skill.indexOf(
-        skill_tree
-          .split("")
-          .filter((v) => skill.split("").includes(v))
-          .join("")
-      )
-  ).length;
+  skill_trees
+    .map((v) => v.replace(new RegExp(`[^${skill}]`, "g"), ""))
+    .filter((v) => !skill.indexOf(v) || v === "").length;
