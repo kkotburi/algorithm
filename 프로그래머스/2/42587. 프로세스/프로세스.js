@@ -1,8 +1,6 @@
 const solution = (priorities, location) => {
   let answer = 0;
-  let array = priorities.map((process, index) => {
-    return { process, index };
-  });
+  let array = priorities.map((process, index) => ({ process, index }));
 
   while (array.length) {
     let queue = array.shift();
