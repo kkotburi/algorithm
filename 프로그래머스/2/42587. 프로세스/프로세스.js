@@ -1,14 +1,16 @@
 const solution = (priorities, location) => {
-  let answer = 0;
-  let array = priorities.map((v, i) => ({ process: v, index: i }));
+  let array = priorities.map((priority, index) => ({ index, priority }));
+  let queue = [];
 
-  while (true) {
-    let queue = array.shift();
-    if (array.some((v) => v.process > queue.process)) {
-      array.push(queue);
+  while (array.length > 0) {
+    let first = array.shift();
+    let priority = array.some((v) => v.priority > first.priority);
+    if (priority) {
+      array.push(first);
     } else {
-      answer++;
-      if (queue.index === location) return answer;
+      queue.push(first);
     }
   }
+
+  return queue.findIndex((v) => v.index === location) + 1;
 };
