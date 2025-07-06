@@ -1,17 +1,16 @@
 const solution = (numbers, target) => {
   let answer = 0;
 
-  const dfs = (idx, sum) => {
-    if (idx === numbers.length) {
-      if (sum === target) answer++;
-      return;
+  const getAnswer = (x, value) => {
+    if (x < numbers.length) {
+      getAnswer(x + 1, value + numbers[x]);
+      getAnswer(x + 1, value - numbers[x]);
+    } else {
+      if (value === target) answer++;
     }
-
-    dfs(idx + 1, sum + numbers[idx]);
-    dfs(idx + 1, sum - numbers[idx]);
   };
 
-  dfs(0, 0);
+  getAnswer(0, 0);
 
   return answer;
 };
