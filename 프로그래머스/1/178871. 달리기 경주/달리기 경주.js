@@ -1,19 +1,18 @@
 const solution = (players, callings) => {
-  const dict = players.reduce((acc, cur, index) => {
-    acc[cur] = index;
-    return acc;
-  }, {});
+  const list = {};
+  players.forEach((v, i) => (list[v] = i));
 
-  callings.forEach((player) => {
-    const curPlayerIndex = dict[player];
-    const nextPlayer = players[curPlayerIndex - 1];
+  for (let call of callings) {
+    let i = list[call];
+    let name1 = players[i];
+    let name2 = players[i - 1];
 
-    players[curPlayerIndex - 1] = player;
-    players[curPlayerIndex] = nextPlayer;
+    list[call] -= 1;
+    list[name2] += 1;
 
-    dict[player]--;
-    dict[nextPlayer]++;
-  });
+    players[i] = name2;
+    players[i - 1] = name1;
+  }
 
   return players;
 };
