@@ -9,8 +9,7 @@ const solution = (s) => {
       current = s[i];
       count = 1;
     } else {
-      if (current !== s[i]) count--;
-      else count++;
+      current !== s[i] ? count-- : count++;
     }
   }
 
