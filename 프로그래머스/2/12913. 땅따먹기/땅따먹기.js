@@ -1,17 +1,12 @@
-const solution = (board) => {
-  const final = board.reduce((scores, row) => {
-    const newScores = [];
-
-    scores.forEach((score, iscore) => {
-      row.forEach((v, i) => {
-        if (i === iscore) return;
-        if (!newScores[i]) newScores[i] = [];
-        newScores[i].push(score + v);
-      });
-    });
-
-    return newScores.map((scores) => Math.max(...scores));
-  });
-
-  return Math.max(...final);
-};
+const solution = (board) =>
+  Math.max(
+    ...board.reduce(
+      (a, c) => [
+        c[0] + Math.max(a[1], a[2], a[3]),
+        c[1] + Math.max(a[0], a[2], a[3]),
+        c[2] + Math.max(a[0], a[1], a[3]),
+        c[3] + Math.max(a[0], a[1], a[2]),
+      ],
+      [0, 0, 0, 0]
+    )
+  );
