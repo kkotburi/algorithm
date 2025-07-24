@@ -1,10 +1,10 @@
 # [level 2] [3차] n진수 게임 - 17687 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17687) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17687?language=javascript) 
 
 ### 성능 요약
 
-메모리: 33.6 MB, 시간: 0.72 ms
+메모리: 38.9 MB, 시간: 7.64 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 10월 0일 6:7:49
+2025년 07월 24일 23:26:22
 
 ### 문제 설명
 
