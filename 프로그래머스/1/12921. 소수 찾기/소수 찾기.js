@@ -1,39 +1,16 @@
-function solution(n) {
-    const s = new Set();
-    for(let i=1; i<=n; i+=2){
-        s.add(i);
-    }
-    s.delete(1);
-    s.add(2);
-    for(let j=3; j<Math.sqrt(n); j++){
-        if(s.has(j)){
-             for(let k=j*2; k<=n; k+=j){    
-                s.delete(k);
-             }
-        }
-    }
-    return s.size;
-}
+const solution = (n) => {
+  let answer = new Set();
 
-// 또 다른 방법
-function solution(n) {
-    var arr = [];
-    var cnt = 0;
-    for (var i = 0; i < n + 1; i++) {
-        arr.push(true);
-    }
+  for (let i = 1; i <= n; i += 2) answer.add(i);
 
-    for (var i = 2; i * i <= n; i++) {
-        if (arr[i]) {
-            for (var j = i * i; j <= n; j += i) {
-                arr[j] = false;
-            }
-        }
-    }
-    arr.splice(0, 2, false, false);
-    for(var i = 0; i <arr.length; i++) {
-        if(arr[i]) cnt++;
-    }
+  answer.delete(1);
+  answer.add(2);
 
-    return cnt++;
-}
+  for (let j = 3; j < Math.sqrt(n); j++) {
+    if (answer.has(j)) {
+      for (let k = j * 2; k <= n; k += j) answer.delete(k);
+    }
+  }
+
+  return answer.size;
+};
