@@ -1,13 +1,5 @@
-const solution = (k, m, score) => {
-  let answer = 0;
-  let sortedScore = score
-    .slice()
-    .sort((a, b) => a - b)
-    .slice(score.length % m);
-
-  for (let i = 0; i < sortedScore.length; i += m) {
-    answer += sortedScore[i] * m;
-  }
-
-  return answer;
-};
+const solution = (_, m, score) =>
+  score
+    .sort()
+    .filter((_, i) => !((score.length - i) % m))
+    .reduce((a, c) => a + c, 0) * m;
