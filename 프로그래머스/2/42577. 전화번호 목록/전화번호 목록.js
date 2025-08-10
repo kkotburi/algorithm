@@ -1,0 +1,5 @@
+const solution = (phone_book) =>
+  !phone_book.sort().some((_, i) => {
+    if (i === phone_book.length - 1) return false;
+    return phone_book[i + 1].startsWith(phone_book[i]);
+  });
