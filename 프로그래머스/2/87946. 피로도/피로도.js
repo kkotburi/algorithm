@@ -1,20 +1,20 @@
-const dfs = (count, dungeons, visited, k) => {
-  let answer = count;
-  dungeons.forEach((dungeon, i) => {
-    if (!visited[i] && dungeon[0] <= k) {
-      visited[i] = 1;
-      answer = Math.max(
-        answer,
-        dfs(count + 1, dungeons, visited, k - dungeon[1])
-      );
-      visited[i] = 0;
-    }
-  });
-  return answer;
-};
-
 const solution = (k, dungeons) => {
+  let answer = 0;
   let visited = new Array(dungeons.length).fill(0);
-  let answer = dfs(0, dungeons, visited, k);
+
+  const dfs = (k, count) => {
+    answer = Math.max(count, answer);
+
+    for (let i = 0; i < dungeons.length; i++) {
+      if (!visited[i] && k >= dungeons[i][0]) {
+        visited[i] = 1;
+        dfs(k - dungeons[i][1], count + 1);
+        visited[i] = 0;
+      }
+    }
+  };
+
+  dfs(k, 0);
+
   return answer;
 };
