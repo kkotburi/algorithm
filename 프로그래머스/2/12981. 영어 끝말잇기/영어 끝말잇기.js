@@ -1,14 +1,12 @@
 const solution = (n, words) => {
-  let answer = [words[0]];
-  for (let i = 1; i < words.length; i++) {
-    if (
-      words[i].charAt(0) !== words[i - 1].charAt(words[i - 1].length - 1) ||
-      answer.find((v) => v === words[i]) ||
-      words[i].length === 1
-    ) {
-      return [(i % n) + 1, Math.ceil((i + 1) / n)];
-    }
-    answer.push(words[i]);
-  }
-  return [0, 0];
+  let answer = 0;
+  words.reduce((acc, cur, idx) => {
+    answer =
+      answer ||
+      (words.slice(0, idx).indexOf(cur) !== -1 || acc !== cur[0]
+        ? idx
+        : answer);
+    return cur[cur.length - 1];
+  }, "");
+  return answer ? [(answer % n) + 1, Math.floor(answer / n) + 1] : [0, 0];
 };
