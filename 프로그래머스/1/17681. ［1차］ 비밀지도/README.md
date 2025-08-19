@@ -1,10 +1,10 @@
 # [level 1] [1차] 비밀지도 - 17681 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17681) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17681?language=javascript) 
 
 ### 성능 요약
 
-메모리: 33.6 MB, 시간: 0.06 ms
+메모리: 33.5 MB, 시간: 0.23 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 06월 06일 23:59:07
+2025년 08월 19일 23:44:52
 
 ### 문제 설명
 
