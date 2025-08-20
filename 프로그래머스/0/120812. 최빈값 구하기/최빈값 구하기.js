@@ -1,14 +1,11 @@
-function solution(array) {
-  let frequency = 0;
-  let answer = 0;
-  for (let i = 0; i < array.length; i++) {
-    let length = array.filter((v) => v === array[i]).length;
-    if (array[i] !== answer && length > frequency) {
-      frequency = length;
-      answer = array[i];
-    } else if (array[i] !== answer && length === frequency) {
-      answer = -1;
-    }
+const solution = (array) => {
+  let answer = new Map();
+
+  for (let n of array) {
+    answer.set(n, (answer.get(n) || 0) + 1);
   }
-  return answer;
-}
+
+  answer = [...answer].sort((a, b) => b[1] - a[1]);
+
+  return answer.length === 1 || answer[0][1] > answer[1][1] ? answer[0][0] : -1;
+};
