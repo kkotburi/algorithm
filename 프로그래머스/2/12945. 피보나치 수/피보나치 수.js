@@ -1,11 +1,11 @@
 const solution = (n) => {
-  let answer = 0;
-  let f0 = 0;
-  let f1 = 1;
-  for (let i = 2; i <= n; i++) {
-    answer = (f0 + f1) % 1234567;
-    f0 = f1;
-    f1 = answer;
+  let result = [0, 1];
+
+  while (result.length !== n + 1) {
+    result.push(
+      (result[result.length - 2] + result[result.length - 1]) % 1234567
+    );
   }
-  return answer;
+
+  return result[n];
 };
