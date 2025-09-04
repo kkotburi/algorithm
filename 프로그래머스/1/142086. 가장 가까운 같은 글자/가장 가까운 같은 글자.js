@@ -1,8 +1,5 @@
-const solution = (s) => {
-  let hash = {};
-  return [...s].map((v, i) => {
-    let answer = hash[v] !== undefined ? i - hash[v] : -1;
-    hash[v] = i;
-    return answer;
+const solution = (s) =>
+  [...s].map((v, i) => {
+    let count = s.slice(0, i).lastIndexOf(v);
+    return count < 0 ? count : i - count;
   });
-};
