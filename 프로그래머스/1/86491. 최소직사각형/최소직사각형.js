@@ -1,14 +1,10 @@
 const solution = (sizes) => {
-  let width = [];
-  let length = [];
-  for (let i = 0; i < sizes.length; i++) {
-    if (sizes[i][0] > sizes[i][1]) {
-      width.push(sizes[i][0]);
-      length.push(sizes[i][1]);
-    } else {
-      width.push(sizes[i][1]);
-      length.push(sizes[i][0]);
-    }
-  }
-  return Math.max(...width) * Math.max(...length);
+  let [width, length] = sizes.reduce(
+    ([a, b], [c, d]) => [
+      Math.max(a, Math.max(c, d)),
+      Math.max(b, Math.min(c, d)),
+    ],
+    [0, 0]
+  );
+  return width * length;
 };
