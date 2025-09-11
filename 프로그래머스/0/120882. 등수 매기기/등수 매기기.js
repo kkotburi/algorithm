@@ -1,4 +1,5 @@
-const solution = (score) =>
-  score.map(
-    (el) => score.filter((v) => v[0] + v[1] > el[0] + el[1]).length + 1
-  );
+const solution = (score) => {
+  let average = score.map((v) => (v[0] + v[1]) / 2);
+  let sorted = average.slice().sort((a, b) => b - a);
+  return average.map((v) => sorted.indexOf(v) + 1);
+};
