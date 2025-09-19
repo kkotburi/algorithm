@@ -1,12 +1,5 @@
 const solution = (id_pw, db) => {
-  let answer = "fail";
-  for (let i = 0; i < db.length; i++) {
-    if (db[i][0] === id_pw[0] && db[i][1] === id_pw[1]) {
-      answer = "login";
-      break;
-    } else if (db[i][0] === id_pw[0]) {
-      answer = "wrong pw";
-    }
-  }
-  return answer;
+  let [id, pw] = id_pw;
+  let map = new Map(db);
+  return map.has(id) ? (map.get(id) === pw ? "login" : "wrong pw") : "fail";
 };
