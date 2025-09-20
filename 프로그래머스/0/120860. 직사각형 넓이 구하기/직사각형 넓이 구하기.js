@@ -1,9 +1,4 @@
 const solution = (dots) => {
-  let x = [];
-  let y = [];
-  for (let i = 0; i < dots.length; i++) {
-    x.push(dots[i][0]);
-    y.push(dots[i][1]);
-  }
-  return (Math.max(...x) - Math.min(...x)) * (Math.max(...y) - Math.min(...y));
+  let [[x1, y1], [x2, y2], [x3, y3]] = dots.sort(([a], [b]) => a - b);
+  return Math.abs(y1 - y2) * Math.abs(x1 - x3);
 };
