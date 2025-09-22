@@ -1,10 +1,10 @@
 # [level 0] 정사각형으로 만들기 - 181830 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181830) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181830?language=javascript) 
 
 ### 성능 요약
 
-메모리: 38.4 MB, 시간: 0.18 ms
+메모리: 38.3 MB, 시간: 0.54 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 03일 23:33:38
+2025년 09월 22일 23:00:09
 
 ### 문제 설명
 
