@@ -1,9 +1,6 @@
 const solution = (arr, k) => {
-  let unique = [...new Set(arr)].slice(0, k);
-  if (unique.length < k) {
-    while (unique.length !== k) {
-      unique.push(-1);
-    }
-  }
-  return unique;
+  let set = new Set(arr);
+  return set.size < k
+    ? [...set, ...Array(k - set.size).fill(-1)]
+    : [...set].slice(0, k);
 };
