@@ -3,5 +3,5 @@ const solution = (s) => {
   while (arr.indexOf("Z") > -1) {
     arr.splice(arr.indexOf("Z") - 1, 2);
   }
-  return arr.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+  return arr.reduce((acc, cur) => parseInt(acc) + parseInt(cur), 0);
 };
