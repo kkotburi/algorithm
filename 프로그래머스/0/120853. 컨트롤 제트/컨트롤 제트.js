@@ -1,10 +1,7 @@
 const solution = (s) => {
-  s = s.split(" ");
-  let answer = 0;
-  for (let i = 0; i < s.length; i++) {
-    if (s[i + 1] !== "Z" && s[i] !== "Z") {
-      answer += +s[i];
-    }
+  let arr = s.split(" ");
+  while (arr.indexOf("Z") > -1) {
+    arr.splice(arr.indexOf("Z") - 1, 2);
   }
-  return answer;
+  return arr.reduce((a, b) => parseInt(a) + parseInt(b), 0);
 };
