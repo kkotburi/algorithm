@@ -1,7 +1,2 @@
-const solution = (order) => {
-  let answer = 0;
-  for (let i = 0; i < order.length; i++) {
-    order[i].includes("cafelatte") ? (answer += 5000) : (answer += 4500);
-  }
-  return answer;
-};
+const solution = (order) =>
+  order.reduce((acc, cur) => acc + (cur.includes("latte") ? 5000 : 4500), 0);
