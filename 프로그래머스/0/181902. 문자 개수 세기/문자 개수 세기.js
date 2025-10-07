@@ -1,62 +1,7 @@
-const solution = (my_string) => {
-  const alphabet = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
-  let answer = [];
-  my_string = my_string.split("");
-  for (let i = 0; i < alphabet.length; i++) {
-    answer.push(my_string.filter((v) => v === alphabet[i]).length);
-  }
-  return answer;
-};
+const solution = (my_string) =>
+  [...my_string].reduce(
+    (acc, cur) => (
+      acc[cur.charCodeAt() - (cur === cur.toLowerCase() ? 71 : 65)]++, acc
+    ),
+    Array(52).fill(0)
+  );
