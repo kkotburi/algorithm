@@ -1,4 +1,2 @@
-const solution = (price, money, count) => {
-  const answer = price * ((count * (count + 1)) / 2) - money;
-  return answer > 0 ? answer : 0;
-};
+const solution = (price, money, count) =>
+  Math.max((price * count * ++count) / 2 - money, 0);
