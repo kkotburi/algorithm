@@ -1,19 +1,9 @@
-const solution = (n, slicer, num_list) => {
-  [a, b, c] = slicer;
-  let answer = [];
-  if (n === 1) {
-    answer = num_list.slice(0, b + 1);
-  }
-  if (n === 2) {
-    answer = num_list.slice(a);
-  }
-  if (n === 3) {
-    answer = num_list.slice(a, b + 1);
-  }
-  if (n === 4) {
-    for (let i = a; i <= b; i += c) {
-      answer.push(num_list[i]);
-    }
-  }
-  return answer;
+const slices = {
+  1: (num_list, [a, b, c]) => num_list.slice(0, b + 1),
+  2: (num_list, [a, b, c]) => num_list.slice(a),
+  3: (num_list, [a, b, c]) => num_list.slice(a, b + 1),
+  4: (num_list, [a, b, c]) =>
+    num_list.slice(a, b + 1).filter((_, i) => i % c === 0),
 };
+
+const solution = (n, slicer, num_list) => slices[n](num_list, slicer);
