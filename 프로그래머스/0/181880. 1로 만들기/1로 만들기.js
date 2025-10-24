@@ -1,9 +1,2 @@
-const solution = (num_list) => {
-  let answer = 0;
-  for (let i = 0; i < num_list.length; i++) {
-    for (let j = 2; num_list[i] / j >= 1; j = j * 2) {
-      answer++;
-    }
-  }
-  return answer;
-};
+const solution = (num_list) =>
+  num_list.map((v) => v.toString(2).length - 1).reduce((a, c) => a + c);
