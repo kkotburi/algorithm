@@ -1,6 +1,6 @@
 # [level 0] 외계행성의 나이 - 120834 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120834) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120834?language=javascript) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 2월 0일 23:27:28
+2025년 11월 01일 23:56:44
 
 ### 문제 설명
 
