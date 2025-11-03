@@ -1,1 +1,1 @@
-const solution = (order) => [...order.toString().matchAll(/[3|6|9]/g)].length;
+const solution = (order) => ("" + order).split(/[369]/).length - 1;
