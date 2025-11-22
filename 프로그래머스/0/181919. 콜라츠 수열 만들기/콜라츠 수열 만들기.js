@@ -1,12 +1,6 @@
-const solution = (n) => {
-  let answer = [n];
-  for (let i = 0; answer[i] > 1; i++) {
-    if (!(n % 2)) {
-      n = n / 2;
-    } else {
-      n = 3 * n + 1;
-    }
-    answer.push(n);
-  }
-  return answer;
+const solution = (n, answer = []) => {
+  answer.push(n);
+  if (n === 1) return answer;
+  if (n % 2 === 0) return solution(n / 2, answer);
+  return solution(3 * n + 1, answer);
 };
