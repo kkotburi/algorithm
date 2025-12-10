@@ -1,1 +1,1 @@
-const solution = (rny_string) => rny_string.replaceAll(/m/g, "rn");
+const solution = (rny_string) => rny_string.split("m").join("rn");
