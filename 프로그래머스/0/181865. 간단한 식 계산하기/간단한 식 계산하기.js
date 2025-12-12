@@ -1,3 +1,1 @@
-const solution = (binomial) => {
-    return eval(binomial);
-};
+const solution = (binomial) => eval(binomial);
