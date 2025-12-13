@@ -1,0 +1,1 @@
+const solution = (v, i) => v.indexOf(1, i);
